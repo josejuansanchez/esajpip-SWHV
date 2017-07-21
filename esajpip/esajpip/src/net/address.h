@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sys/un.h>
 #include <unistd.h>
-#include <stdio.h>
+
 namespace net
 {
   using namespace std;
