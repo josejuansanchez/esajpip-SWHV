@@ -54,9 +54,9 @@ add_library(jpipnet SHARED ${HTTP_SRCS} ${JPIP_SRCS} ${NET_SRCS})
 target_link_libraries(jpipnet jpipcore)
 sidc_install_lib(jpipnet)
 
-add_executable(esajpipserver ${ESAJPIP_TOP}/esa_jpip_server.cc ${APP_SRCS})
-set_target_properties(esajpipserver PROPERTIES COMPILE_FLAGS "-fpie")
-target_link_libraries(esajpipserver jpipnet jpipcore ${PKG_LIBRARIES} config log4cpp pthread)
+add_executable(esajpip ${ESAJPIP_TOP}/esa_jpip_server.cc ${APP_SRCS})
+set_target_properties(esajpip PROPERTIES COMPILE_FLAGS "-fpie")
+target_link_libraries(esajpip jpipnet jpipcore ${PKG_LIBRARIES} config log4cpp pthread)
 
-install(TARGETS esajpipserver DESTINATION server/esajpip)
+install(TARGETS esajpip DESTINATION server/esajpip)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/server.cfg DESTINATION server/esajpip)
