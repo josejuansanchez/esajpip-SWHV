@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sys/un.h>
 #include <unistd.h>
-
+#include <stdio.h>
 namespace net
 {
   using namespace std;
@@ -109,13 +109,13 @@ namespace net
       memset(&sock_addr, 0, sizeof(sock_addr));
 
       hostent *hp = NULL;
-      unsigned long addr;
+      struct in_addr addr;
 
       if(inet_addr(path) == INADDR_NONE)
         hp = gethostbyname(path);
       else {
-        addr = inet_addr(path);
-        hp = gethostbyaddr((char *)&addr, sizeof(addr), AF_INET);
+        inet_aton(path, &addr);
+        hp = gethostbyaddr((const void *)&addr, sizeof(addr), AF_INET);
       }
 
       if(hp != NULL) {
